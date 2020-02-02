@@ -1,7 +1,7 @@
 pipeline {
+    agent { docker { image 'kubectl-helm:0.2' } }
     stages {
         stage("Prepare"){
-               agent { docker { image 'kubectl-helm:0.2' } }
                steps{
                   sh '''
                    echo "Prepare continuous delivery env"
