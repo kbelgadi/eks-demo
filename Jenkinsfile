@@ -1,18 +1,17 @@
 pipeline {
-    agent any
+    agent any {
+      docker { image 'kubectl-helm:0.1' }
+    }
+    
     stages {
         stage("Prepare"){
                steps{
-                  sh '''
-                   echo "Prepare continuous delivery env"
-                  '''
+                  sh 'kubectl version'
                 }
         }
         stage ("Build"){
                steps {
-                 sh '''
-                   echo "Building app"
-                 '''
+                 sh 'helm version'
                }
         }
     }
