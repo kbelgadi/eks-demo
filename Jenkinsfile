@@ -11,16 +11,22 @@ pipeline {
     agent any    
     stages {
         stage("Prepare"){ 
-               steps{
-                  docker.image('kubectl-helm:0.1').withRun('-u root -v /tmp/.kube:/home/jenkins/.kube') {
-                    kubectl version
-                  }
-                // sh '''
+              agent {
+                docker { 
+                  image 'kubectl-helm:0.1' 
+                  args '-u root -v /tmp/.kube:/home/jenkins/.kube'
+                }
+              }                // sh '''
                 //   export KUBECONFIG=/home/jenkins/.kube/config
                 //   kubectl version
                 // '''
                   // // sh 'kubectl version'
                   // sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 kubectl version"
+               
+               steps {
+                 sh '''
+                    kubectl version
+                 '''
                }
         }
         stage ("Build"){
