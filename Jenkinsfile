@@ -15,7 +15,8 @@ pipeline {
                 }
         }
         stage ("Build"){
-               steps {
+               steps { 
+                sh 'ls -al /home/jenkins'
                 //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
                }
         }
