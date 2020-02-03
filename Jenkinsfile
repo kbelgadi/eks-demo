@@ -16,7 +16,7 @@ pipeline {
         }
         stage ("Build"){
                steps { 
-                sh 'cat /$HOME/.kube/config'
+                sh 'id'
                 // sh 'kubectl version'
                 //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
                }
