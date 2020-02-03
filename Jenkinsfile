@@ -1,21 +1,22 @@
 pipeline {
-    // agent {
-    //   docker { 
-    //     // image 'kubectl-helm:0.1' 
-    //     // args '-v /tmp/.kube:/home/jenkins/.kube'
-    //   }
-    // }
+    agent {
+      docker { 
+        image 'kubectl-helm:0.1' 
+        args '-v /tmp/.kube:/home/jenkins/.kube'
+      }
+    }
     agent any    
     stages {
         stage("Prepare"){ 
                steps{
-                  // sh 'kubectl version'
-                  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 kubectl version"
+                  sh 'ls /'
+                  // // sh 'kubectl version'
+                  // sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 kubectl version"
                 }
         }
         stage ("Build"){
                steps {
-                 sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 kubectl version"
+                //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
                }
         }
     }
