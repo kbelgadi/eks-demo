@@ -9,7 +9,10 @@ pipeline {
     stages {
         stage("Prepare"){ 
                steps{
-                  sh 'ls /'
+                sh '''
+                  export KUBECONFIG=/home/jenkins/.kube/config
+                  kubectl version
+                '''
                   // // sh 'kubectl version'
                   // sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 kubectl version"
                 }
@@ -17,8 +20,11 @@ pipeline {
         stage ("Build"){
                steps { 
                 sh '''
+                  helm repo add stable https://kubernetes-charts.storage.googleapis.com
+                  helm repo update
+                  helm upgrade --install postgresql stable/postgresql --set persistence.enabled=false
                   export KUBECONFIG=/home/jenkins/.kube/config
-                  kubectl version
+                  kubectl get pods
                 '''
                 // sh 'kubectl version'
                 //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
