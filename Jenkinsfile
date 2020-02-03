@@ -14,7 +14,7 @@ pipeline {
               agent {
                 docker { 
                   image 'kubectl-helm:0.1' 
-                  args '-u root -v /tmp/.kube:/home/jenkins/.kube'
+                  args '-u root -v /tmp/.kube:/root/.kube'
                 }
               }                // sh '''
                 //   export KUBECONFIG=/home/jenkins/.kube/config
@@ -25,6 +25,7 @@ pipeline {
                
                steps {
                  sh '''
+                    export KUBECONFIG=/root/.kube/config
                     kubectl version
                  '''
                }
