@@ -5,7 +5,7 @@ pipeline {
         args '-v /tmp/.kube:/home/jenkins/.kube'
       }
     }
-    agent any    
+    // agent any    
     stages {
         stage("Prepare"){ 
                steps{
