@@ -10,16 +10,16 @@ pipeline {
     stages {
         stage("Prepare"){ 
                steps{
-                 docker.image('kubectl-helm:0.1').inside('-u root -v /tmp/.kube:/home/jenkins/.kube') {
-                 kubectl version
-                }
+                  docker.image('kubectl-helm:0.1').inside('-u root') {
+                    kubectl version
+                  }
                 // sh '''
                 //   export KUBECONFIG=/home/jenkins/.kube/config
                 //   kubectl version
                 // '''
                   // // sh 'kubectl version'
                   // sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 kubectl version"
-                }
+               }
         }
         stage ("Build"){
                steps { 
