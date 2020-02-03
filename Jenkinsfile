@@ -1,3 +1,5 @@
+def buildimage = docker.image('buildimage:latest');
+
 pipeline {
     // agent {
     //   docker { 
@@ -10,7 +12,7 @@ pipeline {
     stages {
         stage("Prepare"){ 
                steps{
-                  docker.image('kubectl-helm:0.1').inside('-u root') {
+                  docker.image('kubectl-helm:0.1').withRun('-u root -v /tmp/.kube:/home/jenkins/.kube') {
                     kubectl version
                   }
                 // sh '''
