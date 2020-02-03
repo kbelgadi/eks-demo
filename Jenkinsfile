@@ -4,7 +4,7 @@ pipeline {
     }
     
     stages {
-        stage("Prepare"){
+        stage("Prepare"){ 
                steps{
                   sh 'kubectl version'
                 }
