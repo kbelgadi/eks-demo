@@ -17,7 +17,7 @@ pipeline {
         stage ("Build"){
                steps { 
                 sh '''
-                  export KUBECONFIG=/home/jenkins/.kube
+                  export KUBECONFIG=/home/jenkins/.kube/config
                   kubectl version
                 '''
                 // sh 'kubectl version'
