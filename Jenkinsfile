@@ -1,6 +1,7 @@
 pipeline {
     agent {
       docker { image 'kubectl-helm:0.1' }
+      args '-v $HOME/.kube:/root/.kube'
     }
     
     stages {
