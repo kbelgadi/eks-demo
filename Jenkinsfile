@@ -39,6 +39,7 @@ pipeline {
                 sh '''
                   echo hello
                   ls
+                  docker build -t alpine:0.1
                 '''
                 // sh '''
                 //   echo hello
