@@ -56,6 +56,7 @@ pipeline {
         stage ("Push"){
                steps { 
                 sh '''
+                  docker tag alpine:0.1 897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:alpine-0.1
                   docker push 897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:alpine-0.1
                 '''
                 // sh 'kubectl version'
