@@ -30,6 +30,7 @@ pipeline {
                 //  '''
                 sh '''
                   echo hello
+                  
                   eval $(aws ecr get-login --registry-ids 897964440075 --no-include-email --region eu-west-1)
                 '''
                }
