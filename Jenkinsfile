@@ -12,10 +12,10 @@ pipeline {
     stages {
         stage("Prepare"){ 
               agent {
-                docker { 
-                  image 'kubectl-helm:0.1' 
-                  args '-u root -v /tmp/.kube:/root/.kube'
-                }
+                // docker { 
+                //   image 'kubectl-helm:0.1' 
+                //   args '-u root -v /tmp/.kube:/root/.kube'
+                // }
               }                // sh '''
                 //   export KUBECONFIG=/home/jenkins/.kube/config
                 //   kubectl version
