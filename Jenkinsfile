@@ -38,6 +38,7 @@ pipeline {
                steps { 
                 sh '''
                   echo hello
+                  ls
                 '''
                 // sh '''
                 //   echo hello
