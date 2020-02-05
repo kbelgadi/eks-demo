@@ -24,10 +24,13 @@ pipeline {
                   // sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 kubectl version"
                
                steps {
-                 sh '''
-                    export KUBECONFIG=/root/.kube/config
-                    kubectl version
-                 '''
+                //  sh '''
+                //     export KUBECONFIG=/root/.kube/config
+                //     kubectl version
+                //  '''
+                sh '''
+                  echo hello
+                '''
                }
         }
         stage ("Build"){
