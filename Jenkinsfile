@@ -34,11 +34,23 @@ pipeline {
                steps { 
                 sh '''
                   echo hello
-                  // helm repo add stable https://kubernetes-charts.storage.googleapis.com
-                  // helm repo update
-                  // helm upgrade --install postgresql stable/postgresql --set persistence.enabled=false
-                  // export KUBECONFIG=/home/jenkins/.kube/config
-                  // kubectl get pods
+                '''
+                // sh '''
+                //   echo hello
+                //   helm repo add stable https://kubernetes-charts.storage.googleapis.com
+                //   helm repo update
+                //   helm upgrade --install postgresql stable/postgresql --set persistence.enabled=false
+                //   export KUBECONFIG=/home/jenkins/.kube/config
+                //   kubectl get pods
+                // '''
+                // sh 'kubectl version'
+                //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
+               }
+        }
+        stage ("Install"){
+               steps { 
+                sh '''
+                  echo hello
                 '''
                 // sh 'kubectl version'
                 //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
