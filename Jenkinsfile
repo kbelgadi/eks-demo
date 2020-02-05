@@ -53,10 +53,10 @@ pipeline {
                 //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
                }
         }
-        stage ("Install"){
+        stage ("Push"){
                steps { 
                 sh '''
-                  echo hello
+                  docker push 897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:alpine-0.1
                 '''
                 // sh 'kubectl version'
                 //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
