@@ -1,12 +1,20 @@
-kind: Pod
-apiVersion: v1
-metadata:
-  name: apple-app
-  labels:
-    app: apple
-spec:
-  containers:
-    - name: apple-app
-      image: hashicorp/http-echo
-      args:
-        - "-text=apple"
+apiVersion: apps/v1
+kind: Deployment 
+metadata: # ici les metadata lié au Deployment 
+  # Nom de l’objet, il doit être unique dans le namespace
+  name: deployment-example
+  namespace: default
+spec: # Ici les spécifications du Deployment
+  # Lance 3 Pods 
+  replicas: 1
+ selector:
+    matchLabels:
+      app: apple-app
+  template:
+    metadata: # ici les metadata lié aux Pods (ne pas confondre avec les précédents) 
+      labels:
+        app: apple-app
+    spec: # Ici les spécifications des Pods
+      containers: # un Pod peut contenir plusieurs conteneurs
+      - name: apple-app
+        image: hashicorp/http-echo
