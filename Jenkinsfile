@@ -20,7 +20,7 @@ pipeline {
         DOCKER_TAG = "${DOCKER_REPO}:${DOCKER_IMAGE_NAME}-${DOCKER_IMAGE_VERSION}"
     } 
     stages {
-        stage("Prepare"){ 
+        stage("context"){ 
               // agent {
               //   docker { 
               //     image 'kubectl-helm:0.1' 
@@ -43,10 +43,11 @@ pipeline {
                 '''
                }
         }
-        stage ("Build"){
+        stage ("deploy"){
                steps { 
                 sh '''
                   echo hello
+                  docker run -v /tmp/.kube:/root/.kube -v $(pwd)/deploy.yml:/tmp/deploy.yml --rm 897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:helm-demo-0.1 kubectl apply -f /tmp/deploy.yml
                 '''
                 // sh '''
                 //   echo hello
