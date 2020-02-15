@@ -8,7 +8,17 @@ pipeline {
     //     args '-v /tmp/.kube:/home/jenkins/.kube'
     //   }
     // }
-    agent any    
+    agent any
+    environment {
+        EKS_NAME = "eks_demo_dev"
+        DOCKER_REPO = "897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev"
+        KUBECTL_HELM_IMAGE_NAME = "helm-demo"
+        KUBECTL_HELM_IMAGE_VERSION = "0.1"
+        KUBECTL_HELM_IMAGE = "${DOCKER_REPO}:${KUBECTL_HELM_IMAGE_NAME}-${KUBECTL_HELM_IMAGE_VERSION}"
+        AWS_ACCOUNT = "897964440075"
+        AWS_REGION = "eu-west-1"
+        DOCKER_TAG = "${DOCKER_REPO}:${DOCKER_IMAGE_NAME}-${DOCKER_IMAGE_VERSION}"
+    } 
     stages {
         stage("Prepare"){ 
               // agent {
@@ -29,8 +39,7 @@ pipeline {
                 //     kubectl version
                 //  '''
                 sh '''
-                  echo hello
-                  eval $(/usr/local/bin/aws ecr get-login --registry-ids 897964440075 --no-include-email --region eu-west-1)
+                  docker run -v /tmp/.kube:/root/.kube --rm 897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:helm-demo-0.1 aws eks --region eu-west-1 update-kubeconfig --name eks_demo_dev
                 '''
                }
         }
@@ -38,8 +47,6 @@ pipeline {
                steps { 
                 sh '''
                   echo hello
-                  ls
-                  docker build -t alpine:0.1 .
                 '''
                 // sh '''
                 //   echo hello
@@ -56,8 +63,7 @@ pipeline {
         stage ("Push"){
                steps { 
                 sh '''
-                  docker tag alpine:0.1 897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:alpine-0.1
-                  docker push 897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:alpine-0.1
+                  echo hello
                 '''
                 // sh 'kubectl version'
                 //  sh "docker run -v /tmp/.kube:/root/.kube --rm kubectl-helm:0.1 helm version"
