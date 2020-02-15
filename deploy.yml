@@ -17,5 +17,5 @@ spec:
       containers:
       - name: apple-app
         image: hashicorp/http-echo
-        ports:
-        - containerPort: 80
+        args:
+        - "-text=apple"
