@@ -1,14 +1,21 @@
- apiVersion: apps/v1
- kind: Deployment
- metadata:
-   name: rss-site
- spec:
-   replicas: 1
-   template:
-     metadata:
-       labels:
-         app: apple-app
-     spec:
-       containers:
-         - name: apple-app
-           image: hashicorp/http-echo
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apple-app
+  labels:
+    app: apple-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apple-app
+  template:
+    metadata:
+      labels:
+        app: apple-app
+    spec:
+      containers:
+      - name: apple-app
+        image: hashicorp/http-echo
+        ports:
+        - containerPort: 80
