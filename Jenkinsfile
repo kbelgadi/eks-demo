@@ -29,7 +29,6 @@ pipeline {
         stage ("deploy"){
                steps { 
                 sh '''
-                  echo hello
                   docker run -v /tmp/.kube:/root/.kube -v $(pwd)/deploy.yml:/tmp/deploy.yml --rm ${KUBECTL_HELM_IMAGE} kubectl apply -f /tmp/deploy.yml
                 '''
                }
