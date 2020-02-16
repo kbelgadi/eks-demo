@@ -16,13 +16,12 @@ pipeline {
         KUBECTL_HELM_IMAGE_VERSION = "0.1"
         KUBECTL_HELM_IMAGE = "${DOCKER_REPO}:${KUBECTL_HELM_IMAGE_NAME}-${KUBECTL_HELM_IMAGE_VERSION}"
         AWS_REGION = "eu-west-1"
-        DOCKER_TAG = "${DOCKER_REPO}:${DOCKER_IMAGE_NAME}-${DOCKER_IMAGE_VERSION}"
     } 
     stages {
         stage("context"){ 
                steps {
                 sh '''
-                  docker run -v /tmp/.kube:/root/.kube --rm ${KUBECTL_HELM_IMAGE} aws eks --region ${AWS_REGION} update-kubeconfig --name eks_demo_dev
+                  docker run -v /tmp/.kube:/root/.kube --rm ${KUBECTL_HELM_IMAGE} aws eks --region ${AWS_REGION} update-kubeconfig --name ${EKS_NAME}
                 '''
                }
         }
