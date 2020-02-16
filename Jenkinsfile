@@ -1,13 +1,4 @@
-def buildimage = docker.image('buildimage:latest');
-
 pipeline {
-    // agent {
-    //   docker { 
-    //     image 'kubectl-helm:0.1' 
-    //     withRun '-u root'
-    //     args '-v /tmp/.kube:/home/jenkins/.kube'
-    //   }
-    // }
     agent any
     environment {
         EKS_NAME = "eks_demo_dev"
@@ -32,7 +23,7 @@ pipeline {
                 '''
                }
         }
-        stage ("Check"){
+        stage ("check"){
                steps { 
                 sh '''
                   count=7; 
