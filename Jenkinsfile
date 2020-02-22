@@ -14,6 +14,8 @@ pipeline {
         stage('context') {
             steps {
                 sh '''
+                  id
+                  echo $HOME
                   aws eks --region ${AWS_REGION} update-kubeconfig --name ${EKS_NAME}
                 '''
             }
