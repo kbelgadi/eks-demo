@@ -14,29 +14,29 @@ pipeline {
         stage('context') {
             steps {
                 sh '''
-                  ls
+                  aws eks --region ${AWS_REGION} update-kubeconfig --name ${EKS_NAME}
                 '''
             }
         }
-        // stage ("deploy"){
-        //        steps { 
-        //         sh '''
-        //           docker run -v $(pwd)/deploy.yml:/tmp/deploy.yml --rm ${KUBECTL_HELM_IMAGE} kubectl apply -f /tmp/deploy.yml
-        //         '''
-        //        }
-        // }
-        // stage ("check"){
-        //        steps { 
-        //         sh '''
-        //           count=7; 
-        //           while [ $(docker run -v /tmp/.kube:/root/.kube --rm ${KUBECTL_HELM_IMAGE} kubectl get pods -l app=apple-app -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" -o $count -eq 0 ]; do 
-        //             echo "waiting for pod"
-        //             sleep 1
-        //             count=$((count - 1))
-        //           done
-        //         '''
-        //        }
-        // }
+        stage ("deploy"){
+               steps { 
+                sh '''
+                  kubectl apply -f deploy.yml
+                '''
+               }
+        }
+        stage ("check"){
+               steps { 
+                sh '''
+                  count=7; 
+                  while [ $(kubectl get pods -l app=apple-app -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" -o $count -eq 0 ]; do 
+                    echo "waiting for pod"
+                    sleep 1
+                    count=$((count - 1))
+                  done
+                '''
+               }
+        }
     }
 }
 // pipeline {
