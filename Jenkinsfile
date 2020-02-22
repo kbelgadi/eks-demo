@@ -1,11 +1,11 @@
 pipeline {
     agent {
-        docker { image 'node:7-alpine' }
+        docker { image '897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:kubectl-helm-0.1' }
     }
     stages {
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'aws --version'
             }
         }
     }
