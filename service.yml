@@ -7,4 +7,4 @@ spec:
     app: apple-app
   ports:
     - port: 5678 # Default port for image	
-      targetPort: 9376
+      targetPort: 5678
