@@ -4,6 +4,6 @@ metadata:
   name: apple-service
 spec:
   selector:
-    app: apple
+    app: apple-app
   ports:
     - port: 5678 # Default port for image	
