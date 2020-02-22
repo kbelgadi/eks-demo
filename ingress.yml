@@ -1,14 +1,16 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: apple-ingress
+  name: example-ingress
   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - path: /apple
-        backend:
-          serviceName: apple-service
-          servicePort: 5678
+        - path: /apple
+          backend:
+            serviceName: apple-service
+            servicePort: 5678

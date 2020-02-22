@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apple-app
+  name: apple
   labels:
-    app: apple-app
+    app: apple
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apple-app
+      app: apple
   template:
     metadata:
       labels:
-        app: apple-app
+        app: apple
     spec:
       containers:
-      - name: apple-app
+      - name: apple
         image: hashicorp/http-echo
         args:
         - "-text=apple"
