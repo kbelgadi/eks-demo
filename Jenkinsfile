@@ -9,7 +9,7 @@ pipeline {
         KUBECTL_HELM_IMAGE_VERSION = "0.1"
         KUBECTL_HELM_IMAGE = "${DOCKER_REPO}:${KUBECTL_HELM_IMAGE_NAME}-${KUBECTL_HELM_IMAGE_VERSION}"
         AWS_REGION = "eu-west-1"
-        KUBECONFIG=/tmp/config
+        KUBECONFIG="/tmp/config"
     }     
     stages {
         stage('context') {
