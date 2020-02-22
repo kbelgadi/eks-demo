@@ -14,7 +14,6 @@ pipeline {
         stage('context') {
             steps {
                 sh '''
-                  docker run --rm ${KUBECTL_HELM_IMAGE} aws eks --region ${AWS_REGION} update-kubeconfig --name ${EKS_NAME}
                   ls
                 '''
             }
