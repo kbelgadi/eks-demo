@@ -44,6 +44,7 @@ pipeline {
                   kubectl apply -f service.yml
                 '''
                }
+        }
         stage ("ingress"){
                steps { 
                 sh '''
