@@ -11,4 +11,4 @@ spec:
       - path: /apple
         backend:
           serviceName: apple-service
-          servicePort: 80
+          servicePort: 5678
