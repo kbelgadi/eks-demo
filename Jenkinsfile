@@ -4,10 +4,6 @@ pipeline {
     }
     environment {
         EKS_NAME = "eks_demo_dev"
-        DOCKER_REPO = "897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev"
-        KUBECTL_HELM_IMAGE_NAME = "kubectl-helm"
-        KUBECTL_HELM_IMAGE_VERSION = "0.1"
-        KUBECTL_HELM_IMAGE = "${DOCKER_REPO}:${KUBECTL_HELM_IMAGE_NAME}-${KUBECTL_HELM_IMAGE_VERSION}"
         AWS_REGION = "eu-west-1"
         KUBECONFIG="/tmp/config"
     }     
