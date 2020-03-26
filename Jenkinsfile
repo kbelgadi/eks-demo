@@ -3,7 +3,7 @@ pipeline {
         docker { image '897964440075.dkr.ecr.eu-west-1.amazonaws.com/ecr_demo_dev:kubectl-helm-0.1' }
     }
     environment {
-        EKS_NAME = "eks_demo_dev"
+        EKS_NAME = "eks-demo-dev"
         AWS_REGION = "eu-west-1"
         KUBECONFIG="/tmp/config"
     }     
